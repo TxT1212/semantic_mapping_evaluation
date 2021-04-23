@@ -1,0 +1,31 @@
+%YAML:1.0
+---
+
+combineStyle: "image_mask"
+rgb_path: "/media/ezxr/data/tanksandtemples/Barn/images/000001.jpg"
+depth_path: "/media/ezxr/data/tanksandtemples/Barn/masks/000001_mask.png"
+
+image_path: "/media/ezxr/data/Aachen-Day-Night//images/db/100.jpg"
+mask_path: "/media/ezxr/data/Aachen-Day-Night//semantic/masks/100_mask.png"
+image_out_path: "/media/ezxr/data/Aachen-Day-Night//semantic/images_masked/db/100.png"
+mask_out_path: "/media/ezxr/data/Aachen-Day-Night//semantic/org_binary_mask/db/100.jpg.png"
+mask_erode_out: "/media/ezxr/data/Aachen-Day-Night//semantic/erode_binary_mask/db/100.jpg.png"
+image_erode_out: "/media/ezxr/data/Aachen-Day-Night/semantic/images_masked/9.png"
+save_rgb_mask: 1
+save_erode_mask: 1
+# rgb_depth
+K: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 1798.7772, 0, 943.3438, 0, 1799.3103, 733.2229, 0, 0, 1]   
+# data: [ fx, 0, cx, 0, fy, cy, 0, 0, 1]  
+# fx: 1798.7772
+# fy: 1799.3103
+# px: 943.3438
+# py: 733.2229
+
+# image mask
+mask_alpha: 0.5
+mask_value: [2, 4, 9, 12, 17, 72, 102]
+erode_mask_kernel: 9
