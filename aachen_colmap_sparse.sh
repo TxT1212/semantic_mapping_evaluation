@@ -27,7 +27,7 @@ SemanticMap2mask=/home/ezxr/Downloads/SemanticMap2mask/
 # 可选选项为 a b c d e f 和 all, all表示重建全部
 # 需要读取 $ws/images 文件下的 aachen_SUBFILE_NAME.txt
 # 其中， aachen_all.txt会自动复制
-subfile=(a b c all) 
+subfile=(c) 
 # subfile=(a b c d e f all) 
 
 
@@ -40,19 +40,19 @@ aachen_gt_model=$ws/sparse/aachen_gt # 文件夹下有 points cameras images
 database_intrinsics=$ws/3D-models/database_intrinsics.txt
 
 # ### 准备
-mkdir ${ws}/sparse
-mkdir ${ws}/semantic/masks
-mkdir ${ws}/semantic/images_masked
-mkdir ${ws}/semantic/images_masked/db
-mkdir ${ws}/semantic/org_binary_mask
-mkdir ${ws}/semantic/org_binary_mask/db
-mkdir ${ws}/semantic/erode_binary_mask
-mkdir ${ws}/semantic/erode_binary_mask/db
-mkdir ${ws}/databases
-cd $colmap_export_geo_position
-python $colmap_export_geo_position/colmap_export_geo.py --model $aachen_gt_model --output camera_poses.txt
-camera_poses=$aachen_gt_model/camera_poses.txt
-cp ${ws}/3D-models/aachen_cvpr2018_db.list.txt ${ws}/images/aachen_all.txt
+# mkdir ${ws}/sparse
+# mkdir ${ws}/semantic/masks
+# mkdir ${ws}/semantic/images_masked
+# mkdir ${ws}/semantic/images_masked/db
+# mkdir ${ws}/semantic/org_binary_mask
+# mkdir ${ws}/semantic/org_binary_mask/db
+# mkdir ${ws}/semantic/erode_binary_mask
+# mkdir ${ws}/semantic/erode_binary_mask/db
+# mkdir ${ws}/databases
+# cd $colmap_export_geo_position
+# python $colmap_export_geo_position/colmap_export_geo.py --model $aachen_gt_model --output camera_poses.txt
+# camera_poses=$aachen_gt_model/camera_poses.txt
+# cp ${ws}/3D-models/aachen_cvpr2018_db.list.txt ${ws}/images/aachen_all.txt
 
 function colmap_spase_aachen()
 {
@@ -63,14 +63,14 @@ function colmap_spase_aachen()
     mask_path=${5}
     echo $image_list_path
 
-    colmap feature_extractor \
-        --database_path $DATASET_PATH/databases/$data_base \
-        --image_path $DATASET_PATH/images \
-        --image_list_path $image_list_path \
-        --ImageReader.mask_path 
+    # colmap feature_extractor \
+    #     --database_path $DATASET_PATH/databases/$data_base \
+    #     --image_path $DATASET_PATH/images \
+    #     --image_list_path $image_list_path \
+    #     --ImageReader.mask_path 
 
-    colmap exhaustive_matcher \
-        --database_path $DATASET_PATH/databases/$data_base
+    # colmap exhaustive_matcher \
+    #     --database_path $DATASET_PATH/databases/$data_base
 
     colmap mapper \
         --database_path $DATASET_PATH/databases/$data_base \
@@ -82,37 +82,43 @@ function colmap_spase_aachen()
 }
 
 #### 获得有且只有正确内参的db
-for i in ${subfile[*]}; 
-do
-    DATASET_PATH=$ws
-    frame_selected=$DATASET_PATH/images/aachen_$i.txt
-    database_path=$DATASET_PATH/databases/database_true_intrinsics_${i}.db
-    cd $create_db_from_aachen_py
-    python $create_db_from_aachen_py/create_db_from_aachen.py \
-    --frame_selected $frame_selected \
-    --database_intrinsics $database_intrinsics \
-    --database_path $database_path
-done
+# for i in ${subfile[*]}; 
+# do
+#     DATASET_PATH=$ws
+#     frame_selected=$DATASET_PATH/images/aachen_$i.txt
+#     database_path=$DATASET_PATH/databases/database_true_intrinsics_${i}.db
+#     cd $create_db_from_aachen_py
+#     python $create_db_from_aachen_py/create_db_from_aachen.py \
+#     --frame_selected $frame_selected \
+#     --database_intrinsics $database_intrinsics \
+#     --database_path $database_path
+# done
 
 
 ### 语义分割模型 
-cd ${ezxr_semantic_segmentation}
-MODEL_PATH=${ezxr_semantic_segmentation}/TrainedModels/ade20k-hrnetv2-c1
-IMAGE_PATH=$ws/images/db/
-gpu=0  ## gpu idsubfile
-  --is_save_view 1 \
-  --is_save_json 0 \
-  DIR $MODEL_PATH \
-  TEST.result $RESULT_PATH \
-  TEST.checkpoint epoch_30.pth \
-  DATASET.isRotation 0 \
-  DATASET.downsample 1 \
+# cd ${ezxr_semantic_segmentation}
+# MODEL_PATH=${ezxr_semantic_segmentation}/TrainedModels/ade20k-hrnetv2-c1
+# IMAGE_PATH=$ws/images/db/
+# RESULT_PATH=$ws/semantic/masks/
+# gpu=0  ## gpu idsubfile
+# python3 -u test.py \
+#   --imgs $IMAGE_PATH \
+#   --cfg config/ade20k-hrnetv2.yaml \
+#   --gpu $gpu \
+#   --is_save_mask 1 \
+#   --is_save_view 1 \
+#   --is_save_json 0 \
+#   DIR $MODEL_PATH \
+#   TEST.result $RESULT_PATH \
+#   TEST.checkpoint epoch_30.pth \
+#   DATASET.isRotation 0 \
+#   DATASET.downsample 1 \
 
 # ## 语义map转二值化mask
 # yaml=$SemanticMap2mask/combine2images.yaml
 # bin=$SemanticMap2mask/build/general_fuctions
 # DATASET_PATH=$ws
-# for image_choen in $DATASET_PATH/semantic/masks/*_color.png
+# for image_choen in $DATASET_PATH/C*_color.png
 # do
 #     num_chosen=${image_choen%*_color.png}
 #     num_chosen=${num_chosen#*masks/}subfilenum_chosen}.jpg.png
@@ -128,47 +134,47 @@ gpu=0  ## gpu idsubfile
 
 
 # # run colamp with and without segmantic mask
-# for i in ${subfile[*]}; do
+for i in ${subfile[*]}; do
     
-#     DATASET_PATH=$ws
-#     image_list_path=${DATASET_PATH}images/aachen_${i}.txt
-#     data_base_true_intrinsics=$DATASET_PATH/databases/database_true_intrinsics_${i}.db
+    DATASET_PATH=$ws
+    image_list_path=${DATASET_PATH}images/aachen_${i}.txt
+    data_base_true_intrinsics=$DATASET_PATH/databases/database_true_intrinsics_${i}.db
     
-#     ###### run colamp original(no mask)-aachen
-#     sparse_folder=aachen_org_${i}_${date}
-#     mkdir $DATASET_PATH/sparse/$sparse_folder
-#     data_base=aachen_org_${i}.db
-#     cp $data_base_true_intrinsics $DATASET_PATH/databases/$data_base
-#     mask_path=$DATASET_PATH/databases #dummy path
-#     colmap_spase_aachen $DATASET_PATH $data_base $sparse_folder $image_list_path $mask_path
-#     colmap model_aligner \
-#     --input_path $DATASET_PATH$sparse_folder/0 \
-#     --output_path $DATASET_PATH$sparse_folder/0 \
-#     --ref_images_path $camera_poses \
-#     --robust_alignment_max_error 0.01
-#     echo "result of ${sparse_folder}: \n" >> $evaluation_result
-#     python $calculate_error_py \
-#     --input_model $DATASET_PATH$sparse_folder/0 \
-#     --input_model_gt $aachen_gt_model >> $evaluation_result
+    ###### run colamp original(no mask)-aachen
+    sparse_folder=aachen_org_${i}_${date}
+    mkdir $DATASET_PATH/sparse/$sparse_folder
+    data_base=aachen_org_${i}.db
+    # cp $data_base_true_intrinsics $DATASET_PATH/databases/$data_base
+    mask_path=$DATASET_PATH/databases #dummy path
+    colmap_spase_aachen $DATASET_PATH $data_base $sparse_folder $image_list_path $mask_path
+    colmap model_aligner \
+    --input_path $DATASET_PATH$sparse_folder/0 \
+    --output_path $DATASET_PATH$sparse_folder/0 \
+    --ref_images_path $camera_poses \
+    --robust_alignment_max_error 0.01
+    echo "result of ${sparse_folder}: \n" >> $evaluation_result
+    python $calculate_error_py \
+    --input_model $DATASET_PATH$sparse_folder/0 \
+    --input_model_gt $aachen_gt_model >> $evaluation_result
 
 
-#     ###### run colamp segmatic(have mask)-aachen
-#     sparse_folder=aachen_mask_erode${mask_erode_kernel_size}pixel_${i}_${date}
-#     mkdir $DATASET_PATH/sparse/$sparse_folder
-#     data_base=aachen_mask_erode${mask_erode_kernel_size}pixel_$i.db
-#     cp $data_base_true_intrinsics $DATASET_PATH/databases/$data_base
-#     mask_path=$DATASET_PATH/semantic/erode_binary_mask
-#     colmap_spase_aachen $DATASET_PATH $data_base $sparse_folder $image_list_path $mask_path
-#     colmap model_aligner \
-#     --input_path $DATASET_PATH/sparse/$sparse_folder/0 \
-#     --output_path $DATASET_PATH/sparse/$sparse_folder/0 \
-#     --ref_images_path $camera_poses \
-#     --robust_alignment_max_error 0.01
-#     echo "result of ${sparse_folder}: \n" >> $evaluation_result
-#     python $calculate_error_py \
-#     --input_model $DATASET_PATH/sparse/$sparse_folder/0 \
-#     --input_model_gt $aachen_gt_model >> $evaluation_result
-# done
+    ###### run colamp segmatic(have mask)-aachen
+    sparse_folder=aachen_mask_erode${mask_erode_kernel_size}pixel_${i}_${date}
+    mkdir $DATASET_PATH/sparse/$sparse_folder
+    data_base=aachen_mask_erode${mask_erode_kernel_size}pixel_$i.db
+    # cp $data_base_true_intrinsics $DATASET_PATH/databases/$data_base
+    mask_path=$DATASET_PATH/semantic/erode_binary_mask
+    colmap_spase_aachen $DATASET_PATH $data_base $sparse_folder $image_list_path $mask_path
+    colmap model_aligner \
+    --input_path $DATASET_PATH/sparse/$sparse_folder/0 \
+    --output_path $DATASET_PATH/sparse/$sparse_folder/0 \
+    --ref_images_path $camera_poses \
+    --robust_alignment_max_error 0.01
+    echo "result of ${sparse_folder}: \n" >> $evaluation_result
+    python $calculate_error_py \
+    --input_model $DATASET_PATH/sparse/$sparse_folder/0 \
+    --input_model_gt $aachen_gt_model >> $evaluation_result
+done
 
 
 
