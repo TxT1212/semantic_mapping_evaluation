@@ -5,11 +5,11 @@ combineStyle: "image_mask"
 rgb_path: "/media/ezxr/data/tanksandtemples/Barn/images/000001.jpg"
 depth_path: "/media/ezxr/data/tanksandtemples/Barn/masks/000001_mask.png"
 
-image_path: "/media/ezxr/data/Aachen-Day-Night//images/db/100.jpg"
-mask_path: "/media/ezxr/data/Aachen-Day-Night//semantic/masks/100_mask.png"
-image_out_path: "/media/ezxr/data/Aachen-Day-Night//semantic/images_masked/db/100.png"
-mask_out_path: "/media/ezxr/data/Aachen-Day-Night//semantic/org_binary_mask/db/100.jpg.png"
-mask_erode_out: "/media/ezxr/data/Aachen-Day-Night//semantic/erode_binary_mask/db/100.jpg.png"
+image_path: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//images/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480.jpg"
+mask_path: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//semantic/mask/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480_mask.png"
+image_out_path: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//semantic/images_masked/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480.png"
+mask_out_path: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//semantic/org_binary_mask/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480.jpg.png"
+mask_erode_out: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//semantic/erode_binary_mask/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480.jpg.png"
 image_erode_out: "/media/ezxr/data/Aachen-Day-Night/semantic/images_masked/9.png"
 save_rgb_mask: 1
 save_erode_mask: 1
@@ -27,5 +27,25 @@ K: !!opencv-matrix
 
 # image mask
 mask_alpha: 0.5
-mask_value: [2, 4, 9, 12, 17, 72, 102]
+mask_value: [2, 4, 9, 12, 16, 17, 20, 21, 60, 66, 68, 72, 80, 102, 109, 113, 126, 128, 149]
+# 2 sky
+# 4 tree
+# 9 grass
+# 12 person
+# 16 mountain
+# 17 plant
+# 20 car
+# 21 water
+# 60 river
+# 66 flower
+# 68 hill
+# 72 palm tree
+# 80 bus vehicle passenger
+# 102 van
+# 109 swimming pool
+# 113 waterfall
+# 126 animal
+# 128 lake
+# 149 flag
+# 更多语义查看 ezxr-semantic-segmentation/data/object150_info.csv
 erode_mask_kernel: 9
