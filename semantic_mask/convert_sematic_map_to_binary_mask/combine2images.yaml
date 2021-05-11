@@ -5,11 +5,11 @@ combineStyle: "image_mask"
 rgb_path: "/media/ezxr/data/tanksandtemples/Barn/images/000001.jpg"
 depth_path: "/media/ezxr/data/tanksandtemples/Barn/masks/000001_mask.png"
 
-image_path: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//images/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480.jpg"
-mask_path: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//semantic/mask/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480_mask.png"
-image_out_path: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//semantic/images_masked/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480.png"
-mask_out_path: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//semantic/org_binary_mask/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480.jpg.png"
-mask_erode_out: "/data/largescene/ddhjng_part3/ddhjng_ddhyzbsc//semantic/erode_binary_mask/ddhjng_ddhyzbsc_20210420_p-ddhyzbsc_r1_ff735d/00002480.jpg.png"
+image_path: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/images/00008580.jpg"
+mask_path: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/masks/00008580_mask.png"
+image_out_path: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/images_masked/00008580.png"
+mask_out_path: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/org_binary_mask/00008580.jpg.png"
+mask_erode_out: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/erode_binary_mask/00008580.jpg.png"
 image_erode_out: "/media/ezxr/data/Aachen-Day-Night/semantic/images_masked/9.png"
 save_rgb_mask: 1
 save_erode_mask: 1

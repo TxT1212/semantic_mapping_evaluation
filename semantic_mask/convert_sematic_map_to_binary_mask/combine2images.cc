@@ -61,20 +61,12 @@ int Combine2images::combine_rgb_depth()
 int Combine2images::combine_image_mask()
 {
     int mask_alpha = Settings_["mask_alpha"];
-    // Mat image_in = imread(Settings_["image_path"], -1);
+    Mat image_in = imread(Settings_["image_path"], -1);
     Mat image_mask = imread(Settings_["mask_path"], -1);
     cout << "image_mask.empty() " << image_mask.empty() << image_mask.type() << endl;
-    // cout << "image_in.empty() " << image_in.empty() << image_in.cols << endl;
+    cout << "image_in.empty() " << image_in.empty() << image_in.cols << endl;
     vector<int> mask_value;
     Settings_["mask_value"] >> mask_value;
-    // cout << "helo" << endl;
-    // for (size_t i = 0; i < mask_value.size(); i++)
-    // {
-    //     cout << mask_value[i] << " ";
-    // }
-    // cout << endl;
-
-    // typedef cv::Point3_<uint8_t> Pixel;
     typedef uint8_t Pixel;
     image_mask.forEach<Pixel>([&](Pixel &pixel, const int position[]) -> void {
         if ( std::find(mask_value.begin(), mask_value.end(), pixel) != mask_value.end() )
@@ -87,12 +79,12 @@ int Combine2images::combine_image_mask()
         }
         
     });
-    // Mat image_out;
-    // image_in.copyTo(image_out, image_mask);
-    // string image_out_path(Settings_["image_out_path"]);
+    Mat image_out;
+    image_in.copyTo(image_out, image_mask);
+    string image_out_path(Settings_["image_out_path"]);
     string mask_out_path(Settings_["mask_out_path"]);
-    // cout << image_out_path << endl;
-    // imwrite(image_out_path, image_out);
+    cout << image_out_path << endl;
+    imwrite(image_out_path, image_out);
     cout << mask_out_path << endl;
     imwrite(mask_out_path, image_mask);
 
