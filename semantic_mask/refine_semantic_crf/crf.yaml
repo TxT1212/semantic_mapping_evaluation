@@ -1,0 +1,11 @@
+CRF:
+  ITER_MAX: 10
+  POS_W: 2
+  POS_XY_STD: 2
+  BI_W: 4
+  BI_XY_STD: 65
+  BI_RGB_STD: 3
+
+input_masks_path: /media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/masks/
+output_masks_path: /media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/masks_crf/
+input_rgb_path: /media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/images/
