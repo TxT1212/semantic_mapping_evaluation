@@ -1,15 +1,13 @@
-%YAML:1.0
----
 
 combineStyle: "image_mask"
 rgb_path: "/media/ezxr/data/tanksandtemples/Barn/images/000001.jpg"
 depth_path: "/media/ezxr/data/tanksandtemples/Barn/masks/000001_mask.png"
 
-image_path: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/images/00008580.jpg"
-mask_path: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/masks/00008580_mask.png"
-image_out_path: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/images_masked/00008580.png"
-mask_out_path: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/org_binary_mask/00008580.jpg.png"
-mask_erode_out: "/media/ezxr/data/ezxrsales_wh-jgs_20210429_jgsykzx_R3_d235f2/semantic/erode_binary_mask/00008580.jpg.png"
+image_path: "/media/ezxr/data/ezxr_meiyuan/dense/designmus//images/artcourse_designmus_20210429_msquare_r9_4a0636//00007560.jpg"
+mask_path: "/media/ezxr/data/ezxr_meiyuan/dense/designmus//semantic/masks/artcourse_designmus_20210429_msquare_r9_4a0636//00007560_mask.png"
+image_out_path: "/media/ezxr/data/ezxr_meiyuan/dense/designmus//semantic/images_masked/artcourse_designmus_20210429_msquare_r9_4a0636//00007560.png"
+mask_out_path: "/media/ezxr/data/ezxr_meiyuan/dense/designmus//semantic/org_binary_mask/artcourse_designmus_20210429_msquare_r9_4a0636//00007560.jpg.png"
+mask_erode_out: "/media/ezxr/data/ezxr_meiyuan/dense/designmus//semantic/erode_binary_mask/artcourse_designmus_20210429_msquare_r9_4a0636//00007560.jpg.png"
 image_erode_out: "/media/ezxr/data/Aachen-Day-Night/semantic/images_masked/9.png"
 save_rgb_mask: 1
 save_erode_mask: 1
@@ -31,6 +29,7 @@ mask_value: [2, 4, 9, 12, 16, 17, 20, 21, 60, 66, 68, 72, 80, 102, 109, 113, 126
 # 72 palm tree
 # 80 bus vehicle passenger
 # 102 van
+# 104 fountain
 # 109 swimming pool
 # 113 waterfall
 # 126 animal
